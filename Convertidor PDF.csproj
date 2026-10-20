@@ -1,0 +1,33 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <AssemblyName>Convertidor PDF</AssemblyName>
+    <RootNamespace>ConvertidorPDF</RootNamespace>
+    <TargetFramework>net48</TargetFramework>
+    <UseWindowsForms>true</UseWindowsForms>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <LangVersion>latest</LangVersion>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Ookii.Dialogs.WinForms" Version="4.0.0" />
+    <PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies" Version="1.0.3" PrivateAssets="All" />
+    <PackageReference Include="iTextSharp" Version="5.5.13.4" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="$(NuGetPackageRoot)itextsharp\5.5.13.4\lib\net461\itextsharp.dll" LogicalName="itextsharp.dll" />
+    <EmbeddedResource Include="$(NuGetPackageRoot)bouncycastle.cryptography\2.4.0\lib\net461\BouncyCastle.Cryptography.dll" LogicalName="BouncyCastle.Cryptography.dll" />
+    <EmbeddedResource Include="$(NuGetPackageRoot)ookii.dialogs.winforms\4.0.0\lib\net462\Ookii.Dialogs.WinForms.dll" LogicalName="Ookii.Dialogs.WinForms.dll" />
+    <EmbeddedResource Include="$(NuGetPackageRoot)system.resources.extensions\6.0.0\lib\net461\System.Resources.Extensions.dll" LogicalName="System.Resources.Extensions.dll" />
+    <EmbeddedResource Include="$(NuGetPackageRoot)system.memory\4.5.4\lib\net461\System.Memory.dll" LogicalName="System.Memory.dll" />
+    <EmbeddedResource Include="$(NuGetPackageRoot)system.buffers\4.5.1\lib\net461\System.Buffers.dll" LogicalName="System.Buffers.dll" />
+    <EmbeddedResource Include="$(NuGetPackageRoot)system.numerics.vectors\4.5.0\lib\net46\System.Numerics.Vectors.dll" LogicalName="System.Numerics.Vectors.dll" />
+    <EmbeddedResource Include="$(NuGetPackageRoot)system.runtime.compilerservices.unsafe\4.5.3\lib\net461\System.Runtime.CompilerServices.Unsafe.dll" LogicalName="System.Runtime.CompilerServices.Unsafe.dll" />
+  </ItemGroup>
+
+</Project>

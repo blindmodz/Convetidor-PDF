@@ -1,0 +1,7 @@
+bin/
+obj/
+.vs/
+.idea/
+
+# Se restaura mediante NuGet; no versionar la DLL local.
+lib/itextsharp.dll
