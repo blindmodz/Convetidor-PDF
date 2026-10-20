@@ -1,0 +1,49 @@
+name: Compilar Convertidor PDF
+
+on:
+  push:
+    branches:
+      - master
+      - main
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+      - name: Descargar código
+        uses: actions/checkout@v4
+
+      - name: Configurar .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 8.x
+
+      - name: Restaurar dependencias
+        run: dotnet restore "Convertidor PDF.csproj"
+
+      - name: Compilar en Release
+        run: dotnet build "Convertidor PDF.csproj" -c Release --no-restore
+
+      - name: Dejar solo el ejecutable
+        shell: pwsh
+        run: |
+          $outputPath = Join-Path $env:GITHUB_WORKSPACE "bin\Release\net48"
+          $executablePath = Join-Path $outputPath "Convertidor PDF.exe"
+
+          if (-not (Test-Path -LiteralPath $executablePath))
+          {
+              throw "No se encontró el ejecutable compilado: $executablePath"
+          }
+
+          Get-ChildItem -LiteralPath $outputPath -Force |
+              Where-Object { $_.FullName -ne $executablePath } |
+              Remove-Item -Recurse -Force
+
+      - name: Publicar ejecutable
+        uses: actions/upload-artifact@v4
+        with:
+          name: Convertidor-PDF
+          path: bin/Release/net48/Convertidor PDF.exe
+          if-no-files-found: error
